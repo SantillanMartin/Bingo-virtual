@@ -1,96 +1,3 @@
-/*
-
-let contenedorContador=document.getElementById("contenedor-contador");
-
-let dateTime= new Date();
-let time = dateTime.toLocaleTimeString();
-
-
-function cuentaRegresiva(){
-    contenedorContador.innerHTML="";
-    contador.innerHTML=time;
-    contenedorContador.append(contador);
-      
-}
-
-boton.onclick=()=>{
-    
-    setInterval(cuentaRegresiva(),1000);
-}
-
-
-
-let contador=document.getElementById("contador-resta");
-let boton=document.getElementById("boton");
-
-
-// program to display time every 5 seconds
-
-function showTime() {
-    
-    
-    // return new date and time
-    let dateTime= new Date();
-
-    // return the time
-    let time = dateTime.toLocaleTimeString();
-    contador.innerHTML=time;
-    
-    
-        timer=setInterval(()=>{
-            if(numero>=0){
-                contador.innerHTML=numero;
-            numero--;
-            }
-            else{
-                contador.innerHTML="se acabo el tiempo...";
-                clearInterval(timer);
-                numero=5;
-            }
-            
-        },1000);
-    }
-    
-    
-        //contador.innerHTML="Se acabo el tiempo...";
-        let numero=0;
-        function mostrarTiempo(){
-            timer=setInterval(()=>{
-                
-                contador.innerHTML=numero;
-                numero++;  
-            },1000);
-        }
-    
-    function mostrarAviso(avisoGenerico){
-        let contenedorContador=document.getElementById("contenedor-contador");
-        let aviso=document.createElement("p");
-        aviso.innerHTML=`Has estado durante ${avisoGenerico} segundos.`;
-        contenedorContador.append(aviso);
-        
-    }
-    let contenedorContador=document.getElementById("contenedor-contador");
-    let aviso=document.createElement("p");
-    aviso.innerHTML="bla";
-    
-    window.onload(mostrarTiempo());  
-    
-    
-    
-
-
-
-
-
-boton.onclick=()=>{
-    showTime();
-}
-*/
-
-
-// VARIABLES GLOBALES ://
-
-
 let numeroBolilleroContenedor=document.getElementById("bolillero-numero");
 let array=[];
 let array2=[];
@@ -133,6 +40,19 @@ function generarNumeroAleatorio(){
                 
             }
         })
+
+        array3.forEach((number)=>{
+            
+            if(number.numero==numeroAleatorio){
+                let numeroInsertado=document.getElementById(number.id);
+                numeroInsertado.className="main__player__d-flex tachar"
+                
+                
+                
+                
+            }
+        })
+
     
     array.push(numeroAleatorio);
     numeroBolilleroContenedor.innerHTML="";
@@ -149,25 +69,25 @@ function generarNumeroAleatorio(){
 
 
 
-function generarNumerosJugadorYCpu(arrayGenerico){
+function generarNumerosJugadorYCpu(arrayGenerico,idGenerico){
     let suma=0;
     for(let i=15;i>0;i--){
         let numeroAleatorio=Math.floor(Math.random() * 90);
-        let verificar=arrayGenerico.some(numero=>numero==numeroAleatorio);
+        let verificar=arrayGenerico.some(numero=>numero.numero==numeroAleatorio);
         while(verificar){
             numeroAleatorio=Math.floor(Math.random() * 90);
-            verificar=arrayGenerico.some(numero=>numero==numeroAleatorio);
+            verificar=arrayGenerico.some(numero=>numero.numero==numeroAleatorio);
     }
     let objeto={
         numero:numeroAleatorio,
-        id:`numero-tachar-${suma+=1}`
+        id:idGenerico+(suma+=1)
     }
     arrayGenerico.push(objeto);
     }
     console.log(arrayGenerico);
 }
 
-function pintarNumerosJugadorYCpu(idContenedor,arrayGenerico){
+function pintarNumerosJugadorYCpu(idContenedor,arrayGenerico,idGenerico){
     let contenedorNumeros=document.getElementById(idContenedor)
     let sum=0;
     arrayGenerico.forEach((numero)=>{
@@ -175,7 +95,7 @@ function pintarNumerosJugadorYCpu(idContenedor,arrayGenerico){
         let numeroInsertado=document.createElement("div");
         numeroInsertado.className="main__player__d-flex";
         numeroInsertado.innerHTML=numero.numero;
-        numeroInsertado.id=`numero-tachar-${sum+=1}`;
+        numeroInsertado.id=idGenerico+(sum+=1);
         contenedorNumeros.append(numeroInsertado);
     })
 }
@@ -193,11 +113,10 @@ function pintarNumerosDeArrays(){
 
     
 }
-
-generarNumerosJugadorYCpu(array2);
-generarNumerosJugadorYCpu(array3);
-pintarNumerosJugadorYCpu("contenedor-numeros",array2);
-//pintarNumerosJugadorYCpu("contenedor-cpu",array3);
+generarNumerosJugadorYCpu(array2,"tachar-numeros-jugador-");
+generarNumerosJugadorYCpu(array3,"tachar-numeros-cpu-");
+pintarNumerosJugadorYCpu("contenedor-numeros",array2,"tachar-numeros-jugador-");
+pintarNumerosJugadorYCpu("contenedor-cpu",array3,"tachar-numeros-cpu-");
 
 array2.forEach((elemento)=>{
     console.log(elemento.id);
