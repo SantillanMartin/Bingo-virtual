@@ -2,8 +2,8 @@ let numeroBolilleroContenedor=document.getElementById("bolillero-numero");
 let array=[];
 let array2=[];
 let array3=[];
-let arrayIdsPlayer=["numero--tachado-1","numero--tachado-2","numero--tachado-3","numero--tachado-4","numero--tachado-5","numero--tachado-6","numero--tachado-7","numero--tachado-8","numero--tachado-9",
-"numero--tachado-10","numero--tachado-11","numero--tachado-12","numero--tachado-13","numero--tachado-14","numero--tachado-15"];
+let playerContador=15;
+let cpuContador=15;
 let boton=document.getElementById("boton");
 let terminoJuego=false;
 
@@ -12,9 +12,30 @@ boton.onclick=()=>{
     
     generarNumeroAleatorio();
     pintarNumerosDeArrays();
+    mostrarGanador();
+    
     
 }
 
+function mostrarGanador(){
+    if(playerContador==0){
+        terminoJuego=true;
+        numeroBolilleroContenedor.innerHTML="";
+        numeroBolilleroContenedor.className="bolillero__ganador";
+        let mensaje=document.createElement("p");
+        mensaje.innerHTML="PLAYER WINS!!!";
+        numeroBolilleroContenedor.append(mensaje);
+        
+    }else if(cpuContador==0){
+        terminoJuego=true;
+        numeroBolilleroContenedor.innerHTML="";
+        numeroBolilleroContenedor.className="bolillero__ganador";
+        let mensaje=document.createElement("p");
+        mensaje.innerHTML="CPU WINS!!!";
+        numeroBolilleroContenedor.append(mensaje);
+        
+    }
+}
 
 
 
@@ -34,7 +55,8 @@ function generarNumeroAleatorio(){
             if(number.numero==numeroAleatorio){
                 let numeroInsertado=document.getElementById(number.id);
                 numeroInsertado.className="main__player__d-flex tachar"
-                
+                playerContador-=1;
+                console.log(playerContador);
                 
                 
                 
@@ -46,7 +68,7 @@ function generarNumeroAleatorio(){
             if(number.numero==numeroAleatorio){
                 let numeroInsertado=document.getElementById(number.id);
                 numeroInsertado.className="main__player__d-flex tachar"
-                
+                cpuContador-=1;
                 
                 
                 
@@ -102,14 +124,17 @@ function pintarNumerosJugadorYCpu(idContenedor,arrayGenerico,idGenerico){
 
 
 function pintarNumerosDeArrays(){
-    let contenedorNumeros=document.getElementById("colocar--numeros--generados");
-    let numeroAColocar=document.createElement("div");
-    numeroAColocar.className="main__player__d-flex main__player__margin--left";
-    array.forEach((numero)=>{
+    if(terminoJuego==false){
+        let contenedorNumeros=document.getElementById("colocar--numeros--generados");
+        let numeroAColocar=document.createElement("div");
+        numeroAColocar.className="main__player__d-flex main__player__margin--left";
+        array.forEach((numero)=>{
         
         numeroAColocar.innerHTML=numero;
         contenedorNumeros.append(numeroAColocar);
     })
+    }
+    
 
     
 }

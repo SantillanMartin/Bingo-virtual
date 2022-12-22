@@ -110,7 +110,6 @@ button:active{
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    border: solid black;
     margin: auto;
     justify-content: center;
 
@@ -131,4 +130,30 @@ button:active{
     background-color: red;
     color: rgb(102, 7, 7);
     text-decoration: line-through;
+}
+
+.bolillero__ganador{
+    width: 9rem;
+    height: 6rem;
+    border: solid black;
+    font-size: 2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+@media(max-width:960px){
+    .main__cpu,.main__player{
+        height: auto;
+    }
+}
+
+@media(max-width:510px){
+    .main__contenedor{
+        flex-direction: column;
+    }
 }
