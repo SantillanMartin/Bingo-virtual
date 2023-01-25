@@ -138,6 +138,10 @@ function pintarNumerosDeArrays(){
 
     
 }
+
+
+
+
 generarNumerosJugadorYCpu(array2,"tachar-numeros-jugador-");
 generarNumerosJugadorYCpu(array3,"tachar-numeros-cpu-");
 pintarNumerosJugadorYCpu("contenedor-numeros",array2,"tachar-numeros-jugador-");

@@ -156,4 +156,16 @@ button:active{
     .main__contenedor{
         flex-direction: column;
     }
+    .main__bolillero{
+        width: 10rem;
+        height: 10rem;
+    }
+    .main__contenedor__numeros--impresos{
+        height: 20rem;
+        border: solid black;
+        overflow: scroll;
+    }
+    .main__numeros--impresos{
+        margin-top: 0.6rem;
+    }
 }
