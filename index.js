@@ -5,7 +5,15 @@ let array3=[];
 let playerContador=15;
 let cpuContador=15;
 let boton=document.getElementById("boton");
+let botonReiniciar=document.getElementById("boton-reiniciar");
 let terminoJuego=false;
+
+
+function recargarPagina(){
+    location.reload();
+    
+    
+}
 
 // Boton que genera el numero aleatorio//
 boton.onclick=()=>{
@@ -15,6 +23,9 @@ boton.onclick=()=>{
     mostrarGanador();
     
     
+}
+botonReiniciar.onclick=()=>{
+    recargarPagina();
 }
 
 function mostrarGanador(){
